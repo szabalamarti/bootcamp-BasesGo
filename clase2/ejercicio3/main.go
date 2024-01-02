@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // Se puede usar un array. Otras formas son un switch con cada numero o muchos if/else
-var months []string = []string{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
+var months [12]string = [12]string{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
 
 func main() {
 	fmt.Println("Ingresa el numero del mes: ")
@@ -22,5 +22,5 @@ func main() {
 }
 
 func GetMonthName(month int) (month_name string) {
-	return months[month]
+	return months[month-1]
 }
