@@ -1,9 +1,6 @@
-package main
+package calculator
 
-import (
-	"errors"
-	"fmt"
-)
+import "errors"
 
 const (
 	minimum = "minimum"
@@ -11,29 +8,7 @@ const (
 	maximum = "maximum"
 )
 
-func main() {
-	minFunc, minErr := operation(minimum)
-	averageFunc, avgErr := operation(average)
-	maxFunc, maxErr := operation(maximum)
-	if minErr != nil {
-		panic(minErr)
-	}
-	if avgErr != nil {
-		panic(avgErr)
-	}
-	if maxErr != nil {
-		panic(maxErr)
-	}
-
-	minValue := minFunc(2, 3, 3, 4, 10, 2, 4, 5)
-	fmt.Println("Minimun value is: ", minValue)
-	averageValue := averageFunc(2, 3, 3, 4, 1, 2, 4, 5)
-	fmt.Println("Average value is: ", averageValue)
-	maxValue := maxFunc(2, 3, 3, 4, 1, 2, 4, 5)
-	fmt.Println("Maximum value is: ", maxValue)
-}
-
-func operation(operation_type string) (func(values ...int) float64, error) {
+func Operation(operation_type string) (func(values ...int) float64, error) {
 	switch operation_type {
 	case minimum:
 		function := func(values ...int) float64 {

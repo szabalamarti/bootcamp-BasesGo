@@ -1,11 +1,4 @@
-package main
-
-import "fmt"
-
-func main() {
-	average := Average(2, 3, 5, 6, 4, 1)
-	fmt.Println(average)
-}
+package average
 
 func Average(grades ...int) (average float64) {
 	var total int

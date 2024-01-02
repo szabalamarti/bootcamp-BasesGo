@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package salary
 
 const (
 	categoryA = "A"
@@ -8,11 +6,7 @@ const (
 	categoryC = "C"
 )
 
-func main() {
-	fmt.Println(getSalary(10, "C"))
-}
-
-func getSalary(minutes int, category string) (salary int) {
+func GetSalary(minutes int, category string) (salary int) {
 	var monthly_salary float64
 	switch category {
 	case categoryA:
