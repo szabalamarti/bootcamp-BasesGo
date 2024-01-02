@@ -1,9 +1,9 @@
 go 1.21.5
 
 use( 
-    ./clase3/ejercicio1
-    ./clase3/ejercicio2
-    ./clase3/ejercicio3
-    ./clase3/ejercicio4
-    ./clase3/ejercicio5
+    ./clase3-4/ejercicio1
+    ./clase3-4/ejercicio2
+    ./clase3-4/ejercicio3
+    ./clase3-4/ejercicio4
+    ./clase3-4/ejercicio5
 )
