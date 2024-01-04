@@ -1,0 +1,2 @@
+Pedrito,26,Santiago
+Jorge,30,Guadalajara 
