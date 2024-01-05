@@ -22,6 +22,13 @@ type TicketService struct {
 	Tickets []Ticket
 }
 
+var timeMap = map[string][]time.Time{
+	"morning":   {time.Date(0, 0, 0, 0, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 6, 59, 59, 0, time.UTC)},
+	"noon":      {time.Date(0, 0, 0, 7, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 12, 59, 59, 0, time.UTC)},
+	"afternoon": {time.Date(0, 0, 0, 13, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 19, 59, 59, 0, time.UTC)},
+	"night":     {time.Date(0, 0, 0, 20, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 23, 59, 59, 0, time.UTC)},
+}
+
 // NewTicketService returns a new TicketService
 func NewTicketService() *TicketService {
 	return &TicketService{}
@@ -29,16 +36,10 @@ func NewTicketService() *TicketService {
 
 // checkTimePeriod checks if a time is within one of four time periods
 func checkTimePeriod(t time.Time, timePeriod string) bool {
-	timeMap := map[string][]time.Time{
-		"morning":   {time.Date(0, 0, 0, 0, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 6, 59, 59, 0, time.UTC)},
-		"noon":      {time.Date(0, 0, 0, 7, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 12, 59, 59, 0, time.UTC)},
-		"afternoon": {time.Date(0, 0, 0, 13, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 19, 59, 59, 0, time.UTC)},
-		"night":     {time.Date(0, 0, 0, 20, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 23, 59, 59, 0, time.UTC)},
-	}
-
 	// Create a new time.Time value for t that has the same date as the start and end times
 	t = time.Date(0, 0, 0, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
 
+	// Get the start and end times for the time period
 	timeRange := timeMap[timePeriod]
 	startTime := timeRange[0]
 	endTime := timeRange[1]
