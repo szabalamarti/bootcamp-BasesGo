@@ -36,18 +36,15 @@ func checkTimePeriod(t time.Time, timePeriod string) bool {
 		"night":     {time.Date(0, 0, 0, 20, 0, 0, 0, time.UTC), time.Date(0, 0, 0, 23, 59, 59, 0, time.UTC)},
 	}
 
-	tHour := t.Hour()
-	tMinute := t.Minute()
+	// Create a new time.Time value for t that has the same date as the start and end times
+	t = time.Date(0, 0, 0, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
+
 	timeRange := timeMap[timePeriod]
-	startHour := timeRange[0].Hour()
-	startMinute := timeRange[0].Minute()
-	endHour := timeRange[1].Hour()
-	endMinute := timeRange[1].Minute()
-	if (tHour > startHour || (tHour == startHour && tMinute >= startMinute)) &&
-		(tHour < endHour || (tHour == endHour && tMinute < endMinute)) {
-		return true
-	}
-	return false
+	startTime := timeRange[0]
+	endTime := timeRange[1]
+
+	// Check if t is within the time range
+	return (t.Equal(startTime) || t.After(startTime)) && t.Before(endTime)
 }
 
 // LoadTickets loads tickets from a CSV file
