@@ -38,12 +38,10 @@ func NewTicketService() *TicketService {
 func checkTimePeriod(t time.Time, timePeriod string) bool {
 	// Create a new time.Time value for t that has the same date as the start and end times
 	t = time.Date(0, 0, 0, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
-
 	// Get the start and end times for the time period
 	timeRange := timeMap[timePeriod]
 	startTime := timeRange[0]
 	endTime := timeRange[1]
-
 	// Check if t is within the time range
 	return (t.Equal(startTime) || t.After(startTime)) && t.Before(endTime)
 }
